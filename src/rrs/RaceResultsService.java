@@ -1,10 +1,10 @@
 package rrs;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 public class RaceResultsService {
-    private Collection<Client> clients = new ArrayList<Client>();
+    private Collection<Client> clients = new HashSet<>();
     
     public void addSubscriber(Client client) {
         clients.add(client);
