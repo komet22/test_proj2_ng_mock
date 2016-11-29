@@ -17,13 +17,21 @@ public class RaceResultsServiceTest {
         clientB = mock(Client.class);
         message = mock(Message.class);
     }
+    // zero subscribers
+    public void notSubscribedClientShouldNotReceiveMessage() {
+        raceResults.send(message);
+        
+        verify(clientA, never()).receive(message);
+        verify(clientB, never()).receive(message);
+    }
+    // one subscriber
     public void subscribedClientShouldReceiveMessage() {
         raceResults.addSubscriber(clientA);
         raceResults.send(message);
         
         verify(clientA).receive(message);
     }
-    
+    // two subscribers
     public void messageShouldBeSendToAllSubscribedClients() {
         raceResults.addSubscriber(clientA);
         raceResults.addSubscriber(clientB);
@@ -31,11 +39,5 @@ public class RaceResultsServiceTest {
         
         verify(clientA).receive(message);
         verify(clientB).receive(message);
-    }
-    public void notSubscribedClientShouldNotReceiveMessage() {
-        raceResults.send(message);
-        
-        verify(clientA, never()).receive(message);
-        verify(clientB, never()).receive(message);
     }
 }
