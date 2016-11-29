@@ -40,4 +40,12 @@ public class RaceResultsServiceTest {
         verify(clientA).receive(message);
         verify(clientB).receive(message);
     }
+    // client subscribed more then once
+    public void shouldSendOnlyOneMessageToMultiSubscriber() {
+        raceResults.addSubscriber(clientA);
+        raceResults.addSubscriber(clientA);
+        raceResults.send(message);
+        
+        verify(clientA).receive(message);
+    }
 }
