@@ -9,6 +9,9 @@ public class RaceResultsService {
     public void addSubscriber(Client client) {
         clients.add(client);
     }
+    public void removeSubscriber(Client client) {
+        
+    }
     public void send(Message message) {
         for( Client client:clients) {
             client.receive(message);
