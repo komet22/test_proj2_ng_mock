@@ -10,7 +10,7 @@ public class RaceResultsService {
         clients.add(client);
     }
     public void removeSubscriber(Client client) {
-        
+        clients.remove(client);
     }
     public void send(Message message) {
         for( Client client:clients) {
